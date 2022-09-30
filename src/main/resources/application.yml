@@ -10,8 +10,8 @@ spring:
     password: ${REDIS_PASSWORD:password}
 
   datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    url: jdbc:postgresql://localhost:5432/postgress
     password: password
   sql:
     init:
@@ -27,7 +27,7 @@ logging:
     org:
       atmosphere: warn
 server:
-  port: ${PORT:8081}
+  port: ${PORT:8080}
 
 springdoc:
   swagger-ui:

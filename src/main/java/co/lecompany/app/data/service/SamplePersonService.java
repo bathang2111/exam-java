@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class SamplePersonService {
 
     private final SamplePersonRepository repository;
@@ -34,7 +36,12 @@ public class SamplePersonService {
         repository.deleteById(id);
     }
 
-    @Cacheable("page")
+    /**
+     * @Cacheable annotation to cache list user to redis with key = page + pageNum
+     * @param pageable
+     * @return SamplePerson list
+     */
+    @Cacheable(value = "page", key = "#pageable.getPageNumber()")
     public Page<SamplePerson> list(Pageable pageable) {
         return repository.findAll(pageable);
     }
