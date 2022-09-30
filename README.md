@@ -18,4 +18,4 @@ docker-compose up -d
 
 Run project by ide
 
-- Open your browser to test api at [localhost:8080/swagger-ui](localhost:8080/swagger-ui).
+- Open your browser to test api at [localhost:8080/swagger-ui](http://localhost:8080/swagger-ui).
